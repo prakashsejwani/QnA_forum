@@ -15,15 +15,32 @@
     %header.navbar.navbar-fixed-top
       %nav.navbar-inner
         .container
-          = render 'layouts/navigation'
+          %a.btn.btn-navbar{"data-toggle" => "collapse", "data-target" => ".nav-collapse"}
+            .icon-bar
+            .icon-bar
+            .icon-bar
+          %a.brand{"href" => "/"} QnA Forum
+          .nav-collapse
+            %ul.nav
+              = render 'shared/navigation'
     #main{:role => "main"}
       .container
         .content
           .row
-            .span12
+            .span9
               - flash.each do |name, msg|
                 %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
                   %a.close{"data-dismiss" => "alert"} ×
                   = msg
-              = yield
+              .span9      
+                %table{:class => "table"}
+                  %tr
+                    %td     
+                      = text_field_tag :title, ''
+                      = link_to "Ask Question", new_question_path, :class => 'btn btn-primary', :id => 'ask_question' 
+              .span9           
+                = yield
+            .span3
+              %h2 RSS FEED
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.			  
           %footer

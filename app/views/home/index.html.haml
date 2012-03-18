@@ -1,3 +1,17 @@
-%h3 Home
-- @users.each do |user|
-  %p User: #{link_to user.name, user}
+%br
+%h1 Questions
+%br
+%table{:class => "table table-striped"}
+  %thead
+    %tr
+  %tbody 
+    - @questions.each do |question|
+      %tr
+        %td 
+          %h2
+            = link_to question.title, question
+        %td
+          = link_to pluralize(question.answers.size, "Answer"), question, :class => 'btn btn-warning'  
+          %br
+          %br
+          = link_to "Vote",  question, :class => 'btn btn-large'
